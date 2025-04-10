@@ -12,7 +12,7 @@ const TodoItem = ({ todo, updateTodo, deleteTodo }) => {
   };
 
   return (
-    <ListItem>
+    <ListItem style={{ backgroundColor: '#f9fafb', marginBottom: '10px', borderRadius: '4px' }}>
       <Checkbox
         checked={todo.completed}
         onChange={() => updateTodo(todo.id, { ...todo, completed: !todo.completed })}
@@ -22,11 +22,16 @@ const TodoItem = ({ todo, updateTodo, deleteTodo }) => {
           value={task}
           onChange={(e) => setTask(e.target.value)}
           onBlur={handleUpdate}
+          fullWidth
         />
       ) : (
-        <ListItemText primary={todo.task} onClick={() => setIsEditing(true)} />
+        <ListItemText
+          primary={todo.task}
+          onClick={() => setIsEditing(true)}
+          style={{ textDecoration: todo.completed ? 'line-through' : 'none', color: todo.completed ? '#6b7280' : '#1f2937' }}
+        />
       )}
-      <IconButton onClick={() => deleteTodo(todo.id)}>
+      <IconButton onClick={() => deleteTodo(todo.id)} style={{ color: '#ef4444' }}>
         <DeleteIcon />
       </IconButton>
     </ListItem>
